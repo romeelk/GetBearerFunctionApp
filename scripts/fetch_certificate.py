@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import logging
+import base64
 from binascii import hexlify
 
 from azure.keyvault.certificates import CertificateClient, KeyVaultCertificate
@@ -68,6 +69,7 @@ while True:
 
     try:
         retrieved_certificate = client.get_certificate(certificate_name)
+    
         if retrieved_certificate != None:
             break
     except Exception as e: 
