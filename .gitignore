@@ -127,4 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+scripts/testcert.pem
+scripts/testcertkey.key
+scripts/testcertpubpriv.pem
+scripts/testcert.pfx
 scripts/cert_props.json

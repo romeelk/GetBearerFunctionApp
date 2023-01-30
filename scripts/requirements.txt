@@ -4,3 +4,4 @@ azure-keyvault-secrets
 azure-identity==1.11.0
 cryptography
 pycryptodome
+pyOpenSSL

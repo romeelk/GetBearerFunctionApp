@@ -6,6 +6,7 @@ import base64
 from binascii import hexlify
 
 from azure.keyvault.certificates import CertificateClient, KeyVaultCertificate
+from azure.keyvault.secrets import SecretClient
 from azure.identity import AzureCliCredential
 
 logger = logging.getLogger('certificatelogger')
@@ -62,6 +63,7 @@ logger.info("---> authenticating to Azure ... ")
 
 credential = AzureCliCredential()
 client = CertificateClient(vault_url=kv_uri, credential=credential)
+secrets_client = SecretClient(vault_url=kv_uri, credential=credential)
 
 while True:
     print(f"Retrieving your certificate from {key_vault_name}.")
@@ -69,7 +71,12 @@ while True:
 
     try:
         retrieved_certificate = client.get_certificate(certificate_name)
-    
+        secret = secrets_client.get_secret(certificate_name)
+
+        print(secret.value)
+        print(retrieved_certificate.cer.hex())
+        cert_hex_bytes = bytes.fromhex(retrieved_certificate.cer.hex())
+        print(base64.b64encode(cert_hex_bytes).decode())
         if retrieved_certificate != None:
             break
     except Exception as e: 
