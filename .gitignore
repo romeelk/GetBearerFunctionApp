@@ -132,3 +132,5 @@ scripts/testcertkey.key
 scripts/testcertpubpriv.pem
 scripts/testcert.pfx
 scripts/cert_props.json
+scripts/testcertkeyold.key
+scripts/testpubkey.pem
